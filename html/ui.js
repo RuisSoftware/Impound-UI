@@ -1,3 +1,11 @@
+ $(document).keydown(function(e) {
+    if (e.key === "Backspace") {
+    $.post('http://fd_impound/escape', JSON.stringify({}));2
+    } else if (e.key === "Escape") {
+    $.post('http://fd_impound/escape', JSON.stringify({}));2
+    } 
+});
+
 var toggle = false;
 
 $(document).ready(function(){
@@ -19,7 +27,7 @@ $(document).ready(function(){
 		
       } else if (event.data.action == 'add') {
                 
-        AddCar(event.data.plate);        
+        AddCar(event.data.plate, event.data.label);        
 
       } else {
         $('.container').css('display', 'none');
@@ -59,7 +67,7 @@ $(document).ready(function(){
       toggle = true;
     }); 
 
-    function AddCar(plate) {
+    function AddCar(plate, label) {
       $("#vehicle-list").append
       (`
       
@@ -67,6 +75,7 @@ $(document).ready(function(){
         <div class="vehicle-inner">
             <img class="inner-icon" src="car.png">
             <p class="inner-label-knz">` + plate + `</p>
+            <p class="inner-label-knz2">` + label + `</p>
         </div>
       </div>
 

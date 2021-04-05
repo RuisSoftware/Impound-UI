@@ -9,7 +9,7 @@ end)
 	local s = source
 	local x = ESX.GetPlayerFromId(s)
 	
-	MySQL.Async.fetchAll('SELECT plate FROM owned_vehicles WHERE owner = @owner AND stored = 0', {['@owner'] = x.identifier}, function(vehicles)
+	MySQL.Async.fetchAll('SELECT plate, vehicle FROM owned_vehicles WHERE owner = @owner AND stored = 0', {['@owner'] = x.identifier}, function(vehicles)
 		cb(vehicles)
 	end)
 end)--]]
@@ -20,7 +20,7 @@ ESX.RegisterServerCallback('fd_impound:loadVehicles', function(source, cb)
 	local s = source
 	local x = ESX.GetPlayerFromId(s)
 	
-	MySQL.Async.fetchAll('SELECT plate FROM owned_vehicles WHERE owner = @owner AND state = 1', {['@owner'] = x.identifier}, function(vehicles)
+	MySQL.Async.fetchAll('SELECT plate, vehicle FROM owned_vehicles WHERE owner = @owner AND state = 1', {['@owner'] = x.identifier}, function(vehicles)
 		cb(vehicles)
 	end)
 end)

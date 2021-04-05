@@ -37,10 +37,14 @@ local garages = {
 
 local enableField = false
 
-function AddCar(plate)
+function AddCar(plate, label)
+	if label == "CARNOTFOUND" then
+		label = "UNKOWN CAR"
+	end
     SendNUIMessage({
         action = 'add',
-        plate = plate
+        plate = plate,
+		label = label
     }) 
 end
 
@@ -82,7 +86,9 @@ RegisterNUICallback('enable-parkout', function(data, cb)
     
     ESX.TriggerServerCallback('fd_impound:loadVehicles', function(vehicles)
         for key, value in pairs(vehicles) do
-            AddCar(value.plate)
+			local props = json.decode(value.vehicle)
+            AddCar(value.plate, GetDisplayNameFromVehicleModel(props.model))
+			
         end
     end)
     

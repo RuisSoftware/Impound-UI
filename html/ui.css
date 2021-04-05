@@ -168,7 +168,19 @@
 
 .inner-label-knz {
     position: absolute;
-    top: 20px;
+    top: 10px;
+    left: 30px;
+    width: 89%;
+    text-align: center;
+    font-weight: 750;
+    letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+.inner-label-knz2 {
+    position: absolute;
+    bottom: 10px;
     left: 30px;
     width: 89%;
     text-align: center;

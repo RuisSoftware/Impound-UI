@@ -1,3 +1,14 @@
+fx_version "bodacious"
+games {"gta5"}
+
+name "impound-ui"
+description "Impound UI"
+author "german-admiral-man"
+contributor "Dutch Players"
+version "1.0.1"
+url "https://github.com/german-admiral-man/Impound-UI"
+ui_page 'html/ui.html'
+
 server_scripts {
   '@async/async.lua',
   '@mysql-async/lib/MySQL.lua',
@@ -8,7 +19,6 @@ client_scripts {
   'client/main*.lua'
 }
 
-ui_page 'html/ui.html'
 files {
   'html/ui*.html',
   'html/ui*.css', 
@@ -17,6 +27,3 @@ files {
   'html/logo*.gif',
   'html/car*.png'
 }
-
-
- 
