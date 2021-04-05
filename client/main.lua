@@ -50,16 +50,12 @@ function toggleField(enable)
     end
 end
 
-
-
 AddEventHandler('onResourceStart', function(name)
     if GetCurrentResourceName() ~= name then
         return
     end
 
     toggleField(false)
-
-
 end)
 
 RegisterNUICallback('escape', function(data, cb)
@@ -70,7 +66,7 @@ RegisterNUICallback('escape', function(data, cb)
 end)
 
 RegisterNUICallback('enable-parkout', function(data, cb)
-    
+
     ESX.TriggerServerCallback('fd_impound:loadVehicles', function(vehicles)
         for key, value in pairs(vehicles) do
 			local props = json.decode(value.vehicle)
@@ -151,11 +147,12 @@ end)
 Citizen.CreateThread(function()
     while true do
         Wait(0)
-
+		local sleep = true
         for key, value in pairs(garages) do
             local dist = GetDistanceBetweenCoords(GetEntityCoords(GetPlayerPed()), value[1])
 
             if dist <= 2.0 then
+                sleep = false
                 ESX.ShowHelpNotification("Drücke ~INPUT_CONTEXT~ um auf dem Abschlepphof zuzugreifen")
 
                 if IsControlJustReleased(0, 38) then
@@ -164,6 +161,7 @@ Citizen.CreateThread(function()
                 end
             end
         end
+		if sleep then Citizen.Wait(1000) end
      end
 end)
 
@@ -175,7 +173,6 @@ local coordinate = {
 }
 
 Citizen.CreateThread(function()
-
     for _, v in pairs(coordinate) do
         RequestModel(v[7])
         while not HasModelLoaded(v[7]) do
